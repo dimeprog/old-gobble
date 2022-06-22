@@ -1,29 +1,25 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:gobble/controller/apicontroller.dart';
-import 'package:gobble/controller/logincontroller.dart';
 import 'package:gobble/route/route.dart';
-import 'package:gobble/screens/BottomNav_screen.dart';
-import 'package:gobble/screens/signup_screen.dart';
-import 'package:gobble/services/BaseClient.dart';
-import 'package:gobble/widget/Textwidget.dart';
-import 'package:gobble/utils/gobble.dart';
-import 'package:gobble/widget/authfolder/app_raisedButton.dart';
-import 'package:gobble/widget/authfolder/bottom_row_option.dart';
-import 'package:gobble/widget/authfolder/form_field_widget.dart';
+import 'package:gobble/screens/login_screen.dart';
 
+import '../controller/apicontroller.dart';
+import '../controller/signupcontroller.dart';
 import '../utils/dimesnsion.dart';
+import '../utils/gobble.dart';
+import '../widget/Textwidget.dart';
+import '../widget/authfolder/app_raisedButton.dart';
 import '../widget/authfolder/auth_form.dart';
+import '../widget/authfolder/bottom_row_option.dart';
+import '../widget/authfolder/form_field_widget.dart';
 
-class LoginScreen extends StatefulWidget {
+class SignUpScreen extends StatefulWidget {
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  final Controller = Get.put(LoginController());
+class _SignUpScreenState extends State<SignUpScreen> {
+  final Controller = Get.put(SignUpController());
 
   @override
   Widget build(BuildContext context) {
@@ -36,20 +32,20 @@ class _LoginScreenState extends State<LoginScreen> {
             width: screenWidth,
             margin: EdgeInsets.symmetric(
               vertical: getHeight(10),
-              horizontal: getWidth(40),
+              horizontal: getWidth(30),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: getHeight(70),
+                  height: getHeight(40),
                 ),
                 GobbleText(),
                 SizedBox(
-                  height: getHeight(60),
+                  height: getHeight(35),
                 ),
                 BigText(
-                  text: 'Login',
+                  text: 'Sign Up',
                   weight: FontWeight.w500,
                   fontSize: 40,
                   color: Theme.of(context).colorScheme.surface,
@@ -59,11 +55,46 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: getHeight(20),
                 ),
                 Form(
-                  key: Controller.loginformkey,
+                  key: Controller.signupformkey,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
+                      SizedBox(
+                        height: getHeight(60),
+                        child: TextFormField(
+                          controller: Controller.nameTextController,
+                          onSaved: (value) {
+                            Controller.email = value;
+                          },
+                          validator: (value) {
+                            return Controller.validateEmail(value!);
+                          },
+                          style: TextStyle(
+                            color: Colors.black,
+                            overflow: TextOverflow.fade,
+                            fontSize: getHeight(18),
+                            fontWeight: FontWeight.w500,
+                          ),
+                          decoration: InputDecoration(
+                            labelText: 'Name',
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                color: Colors.black,
+                                style: BorderStyle.solid,
+                              ),
+                              borderRadius: BorderRadius.circular(
+                                getHeight(30),
+                              ),
+                            ),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(
+                                getHeight(30),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
                       SizedBox(
                         height: getHeight(25),
                       ),
@@ -72,10 +103,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: TextFormField(
                           controller: Controller.emailTextController,
                           onSaved: (value) {
-                            Controller.email = value;
+                            Controller.name = value;
                           },
                           validator: (value) {
-                            return Controller.validateEmail(value!);
+                            return Controller.validateName(value!);
                           },
                           style: TextStyle(
                             color: Colors.black,
@@ -103,7 +134,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       SizedBox(
-                        height: getHeight(40),
+                        height: getHeight(25),
                       ),
                       SizedBox(
                         height: getHeight(60),
@@ -144,6 +175,42 @@ class _LoginScreenState extends State<LoginScreen> {
                       SizedBox(
                         height: getHeight(25),
                       ),
+                      SizedBox(
+                        height: getHeight(60),
+                        child: TextFormField(
+                          controller: Controller.confirmPasswordTextController,
+                          onSaved: (value) {
+                            Controller.confirmPassword = value;
+                          },
+                          validator: (value) {
+                            return Controller.validateConfirmPassword(value!);
+                          },
+                          obscureText: true,
+                          style: TextStyle(
+                            color: Colors.black,
+                            overflow: TextOverflow.fade,
+                            fontSize: getHeight(18),
+                            fontWeight: FontWeight.w500,
+                          ),
+                          decoration: InputDecoration(
+                            labelText: ' confirm password',
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                color: Colors.black,
+                                style: BorderStyle.solid,
+                              ),
+                              borderRadius: BorderRadius.circular(
+                                getHeight(30),
+                              ),
+                            ),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(
+                                getHeight(30),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -156,13 +223,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     width: getWidth(200),
                     child: AppRaisedButton(
                       onpressed: () {
-                        // ApiController().getData;
-                        Controller.LogUserIn();
-                        Get.to(BottomNavigationBarScreen());
+                        ApiController().getData;
+                        Controller.SignUserUp();
+
+                        Get.toNamed(AppRoute.gotoHomeScreen());
                       },
                       radius: 30,
                       child: Text(
-                        'Login',
+                        'Sign Up',
                         style: TextStyle(
                           fontSize: getHeight(26),
                           color: Theme.of(context).colorScheme.onSurface,
@@ -173,6 +241,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 SizedBox(
                   height: getHeight(30),
+                  width: double.infinity,
                 ),
                 Align(
                   alignment: Alignment.bottomCenter,
@@ -181,11 +250,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       height: getHeight(50),
                       width: double.infinity,
                       child: RowOption(
-                        userOption: 'SignUp',
-                        userString: 'Don\'t have an account?',
-                        RouteOPtion: () => Get.to(
-                          SignUpScreen(),
-                        ),
+                        userOption: 'Login',
+                        userString: 'Already have an account?',
+                        RouteOPtion: () => Get.to(LoginScreen()),
                       ),
                     ),
                   ),
