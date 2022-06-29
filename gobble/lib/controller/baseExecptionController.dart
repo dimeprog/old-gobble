@@ -1,6 +1,6 @@
 import 'package:gobble/helper/dialog_helper.dart';
 
-import '../services/app_execption.dart';
+import '../services/api/app_execption.dart';
 
 class BaseExecptionController {
   static void handleError(err) {

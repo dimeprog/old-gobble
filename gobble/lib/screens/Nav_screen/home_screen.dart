@@ -171,18 +171,20 @@ class HomeScreen extends StatelessWidget {
                       color: ColorScheme.primary,
                       fontSize: 20,
                       weight: FontWeight.w400,
-                    )
+                    ),
                   ],
                 ),
               ),
               SizedBox(
                 height: getHeight(10),
               ),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: getWidth(30),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: getWidth(30),
+                  ),
+                  child: HomeGrid(),
                 ),
-                child: HomeGrid(),
               ),
             ],
           ),

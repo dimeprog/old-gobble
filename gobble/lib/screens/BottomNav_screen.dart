@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gobble/screens/Nav_screen/cart_screen.dart';
 import 'package:gobble/screens/Nav_screen/home_screen.dart';
-import 'package:gobble/screens/Nav_screen/profile.dart';
-import 'package:gobble/screens/Nav_screen/search_screen.dart';
+import 'package:gobble/screens/Nav_screen/account.dart';
+import 'package:gobble/screens/Nav_screen/order_screen.dart';
 import 'package:gobble/utils/dimesnsion.dart';
 
 class BottomNavigationBarScreen extends StatefulWidget {
@@ -14,9 +14,9 @@ class BottomNavigationBarScreen extends StatefulWidget {
 class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
   List Pages = [
     HomeScreen(),
-    SearchScreen(),
+    OrderScreen(),
     CartSceen(),
-    ProfileScreen(),
+    AccountScreen(),
   ];
   int curIndex = 0;
   void onTap(int index) {
@@ -63,7 +63,7 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
                 label: 'Home'),
             BottomNavigationBarItem(
                 icon: Icon(
-                  Icons.search,
+                  Icons.food_bank_rounded,
                   size: getHeight(32),
                 ),
                 label: 'search'),

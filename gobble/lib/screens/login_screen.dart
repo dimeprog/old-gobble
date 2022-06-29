@@ -7,7 +7,7 @@ import 'package:gobble/controller/logincontroller.dart';
 import 'package:gobble/route/route.dart';
 import 'package:gobble/screens/BottomNav_screen.dart';
 import 'package:gobble/screens/signup_screen.dart';
-import 'package:gobble/services/BaseClient.dart';
+import 'package:gobble/services/api/BaseClient.dart';
 import 'package:gobble/widget/Textwidget.dart';
 import 'package:gobble/utils/gobble.dart';
 import 'package:gobble/widget/authfolder/app_raisedButton.dart';
