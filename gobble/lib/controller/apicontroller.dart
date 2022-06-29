@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:gobble/controller/baseexecptioncontroller.dart';
 import 'package:http/http.dart';
-import '../services/BaseClient.dart';
+import '../services/api/BaseClient.dart';
 
 class ApiController extends GetxController with BaseExecptionController {
   // static properties
 // ////////////////////////////
-  static var client = GobbleBaseClient();
+  static var client = GobbleBaseClient(baseUrl: '');
   static const baseApi = 'https://gobble-foods.herokuapp.com';
   static const api = 'https://gobble-foods.herokuapp.com/api/v1/auth/signup';
   static const postmanApi =

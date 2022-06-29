@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:gobble/models/product.dart';
 import 'package:gobble/utils/dimesnsion.dart';
 import 'package:gobble/utils/text_widget.dart';
 
 class HomeGridItem extends StatelessWidget {
-  const HomeGridItem({Key? key}) : super(key: key);
+  ProductItem productItem;
+  HomeGridItem({Key? key, required this.productItem});
 
   @override
   Widget build(BuildContext context) {
     final ColorScheme = Theme.of(context).colorScheme;
+    // print(ProductItem().name);
     return Container(
       margin: EdgeInsets.symmetric(
         vertical: getHeight(10),
@@ -32,7 +35,7 @@ class HomeGridItem extends StatelessWidget {
             ),
           ),
           SmallText(
-            text: 'Drinks',
+            text: ProductItem().name,
             color: ColorScheme.primary,
             fontSize: 20,
             weight: FontWeight.w500,

@@ -3,9 +3,7 @@ import 'package:gobble/utils/dimesnsion.dart';
 import 'package:gobble/utils/text_widget.dart';
 
 class NavBar extends StatelessWidget {
-  NavBar(
-      {required this.icon, required this.middleText, required this.isTrailing});
-  final IconData icon;
+  NavBar({required this.middleText, required this.isTrailing});
   final String middleText;
 
   final isTrailing;
@@ -14,27 +12,40 @@ class NavBar extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(
         horizontal: getWidth(28.75),
+        vertical: getHeight(15),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           CircleAvatar(
+            radius: getWidth(22.875),
             backgroundColor: Theme.of(context).colorScheme.background,
-            child: Icon(
-              Icons.arrow_back,
-              color: Theme.of(context).colorScheme.surface,
+            child: IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.arrow_back,
+                color: Theme.of(context).colorScheme.surface,
+              ),
             ),
           ),
           SmallText(
             text: middleText,
             color: Theme.of(context).colorScheme.surface,
+            fontSize: 24,
+            weight: FontWeight.w500,
           ),
-          CircleAvatar(
-            child: Icon(
-              Icons.favorite,
-              color: Theme.of(context).colorScheme.background,
-            ),
-          )
+          isTrailing
+              ? CircleAvatar(
+                  radius: getWidth(22.875),
+                  child: IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.favorite,
+                      color: Theme.of(context).colorScheme.background,
+                    ),
+                  ),
+                )
+              : Text(''),
         ],
       ),
     );

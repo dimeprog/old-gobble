@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../services/BaseClient.dart';
+import '../services/api/BaseClient.dart';
 import './baseExecptionController.dart';
 
 class LoginController extends GetxController {
-  static var client = GobbleBaseClient();
+  static var client = GobbleBaseClient(baseUrl: '');
   static const baseApi = 'https://gobble-foods.herokuapp.com';
   static const apiSignup =
       'https://gobble-foods.herokuapp.com/api/v1/auth/signup';

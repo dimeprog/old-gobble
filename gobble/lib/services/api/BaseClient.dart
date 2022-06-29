@@ -3,17 +3,20 @@ import 'dart:io';
 import 'dart:math';
 import 'dart:convert';
 
-import 'package:gobble/services/app_execption.dart';
+import 'package:gobble/services/api/app_execption.dart';
+import 'package:gobble/services/api/app_execption.dart';
 import 'package:http/http.dart ' as http;
 
 class GobbleBaseClient {
+  final String? baseUrl;
+  GobbleBaseClient({required this.baseUrl});
   static const TIMEOUT = 20;
   //  GET
-  Future<dynamic> get(String baseUrl, String endPoint) async {
+  Future<String?> get(String baseUrl, String endPoint) async {
     var uri = Uri.parse(baseUrl + endPoint);
     try {
       var response = await http.get(uri).timeout(
-            Duration(seconds: TIMEOUT),
+            const Duration(seconds: TIMEOUT),
           );
       return _processResponse(response);
     } on SocketException {
@@ -28,12 +31,12 @@ class GobbleBaseClient {
   }
 
   // POST
-  Future<dynamic> post(String baseUrl, String endPoint, dynamic payload) async {
+  Future<String?> post(String baseUrl, String endPoint, dynamic payload) async {
     var uri = Uri.parse(baseUrl + endPoint);
     var JsonData = json.encode(payload);
     try {
       var response = await http.post(uri, body: JsonData).timeout(
-            Duration(seconds: TIMEOUT),
+            const Duration(seconds: TIMEOUT),
           );
       return _processResponse(response);
     } on SocketException {
