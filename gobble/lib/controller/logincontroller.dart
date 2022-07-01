@@ -1,15 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:gobble/services/respository/login_repo.dart';
 
 import '../services/api/BaseClient.dart';
 import './baseExecptionController.dart';
 
 class LoginController extends GetxController {
-  static var client = GobbleBaseClient(baseUrl: '');
-  static const baseApi = 'https://gobble-foods.herokuapp.com';
-  static const apiSignup =
-      'https://gobble-foods.herokuapp.com/api/v1/auth/signup';
-
   //  controllers
   // TextEditingController passwordTextController = TextEditingController();
   // TextEditingController confirmPasswordTextController = TextEditingController();
@@ -64,14 +62,16 @@ class LoginController extends GetxController {
     if (isValid == false) return;
     loginformkey.currentState!.save();
     var payLoad = {"email": email, "password": password};
-    var res = await client
-        .post(
-          baseApi,
-          '/api/v1/auth/login',
-          payLoad,
-        )
+    LoginRepo loginRepo = LoginRepo(payload: payLoad);
+    var res = await loginRepo
+        .loginUser()
         .catchError(BaseExecptionController.handleError);
-    if (res == null) return;
+    if (res != null) {
+      var resJson = json.decode(res.body);
+      print(resJson);
+    } else {
+      print('could not load');
+    }
 
     print(res);
   }

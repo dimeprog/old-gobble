@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
+import 'package:gobble/route/route.dart';
 import 'package:gobble/utils/dimesnsion.dart';
 import 'package:gobble/utils/text_widget.dart';
 
@@ -13,12 +16,12 @@ class SettingTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () => Get.toNamed(AppRoute.gotoDetailProductScreen()),
       child: Container(
         height: getHeight(53),
         width: getWidth(325),
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.onBackground,
+          color: Theme.of(context).colorScheme.onBackground.withOpacity(0.8),
           borderRadius: BorderRadius.circular(
             getHeight(15),
           ),
@@ -44,9 +47,9 @@ class SettingTile extends StatelessWidget {
             ),
             SmallText(
               text: title,
-              color: Color(0xFFEAEAEA),
+              color: Theme.of(context).colorScheme.surface.withOpacity(0.8),
               fontSize: 16,
-              weight: FontWeight.w400,
+              weight: FontWeight.w500,
             ),
             Expanded(child: Container()),
             IconButton(

@@ -158,7 +158,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       onpressed: () {
                         // ApiController().getData;
                         Controller.LogUserIn();
-                        Get.to(BottomNavigationBarScreen());
+                        // Get.to(BottomNavigationBarScreen());
                       },
                       radius: 30,
                       child: Text(

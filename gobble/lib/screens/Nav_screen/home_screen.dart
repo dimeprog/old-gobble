@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:gobble/controller/apicontroller.dart';
+import 'package:gobble/controller/productcontroller.dart';
+import 'package:gobble/services/respository/product_repo.dart';
 import 'package:gobble/utils/dimesnsion.dart';
 import 'package:gobble/utils/text_widget.dart';
 import 'package:gobble/widget/home_widget/home_grid.dart';
 
 import '../../widget/home_widget/sliding_container.dart';
+import '../../services/api/dummydata.dart';
 
 class HomeScreen extends StatelessWidget {
+  final apiController = Get.put(ApiController());
   @override
   Widget build(BuildContext context) {
     final ColorScheme = Theme.of(context).colorScheme;
@@ -42,7 +48,9 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ),
                           child: IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Get.find<ProductController>().getProduct();
+                            },
                             icon: Icon(
                               Icons.menu_rounded,
                               color: ColorScheme.surface,
@@ -55,7 +63,10 @@ class HomeScreen extends StatelessWidget {
                       height: getHeight(28),
                       width: getWidth(23),
                       child: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          var p = ProductRepo().fetchProduct();
+                          print(p);
+                        },
                         icon: Icon(
                           Icons.notifications_sharp,
                           color: ColorScheme.primary,

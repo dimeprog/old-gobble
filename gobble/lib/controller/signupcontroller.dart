@@ -1,20 +1,15 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:gobble/services/respository/signup_repo.dart';
 import '../services/api/BaseClient.dart';
+import '../services/respository/login_repo.dart';
 import './baseExecptionController.dart';
 
 class SignUpController extends GetxController {
-  static var client = GobbleBaseClient(baseUrl: '');
-  static const baseApi = 'https://gobble-foods.herokuapp.com';
-  static const apiSignup =
-      'https://gobble-foods.herokuapp.com/api/v1/auth/signup';
-
   //  controllers
 
-  // TextEditingController passwordTextController = TextEditingController();
-  // TextEditingController confirmPasswordTextController = TextEditingController();
-  // TextEditingController emailTextController = TextEditingController();
-  // TextEditingController nameTextController = TextEditingController();
   late TextEditingController passwordTextController,
       emailTextController,
       nameTextController,
@@ -74,14 +69,24 @@ class SignUpController extends GetxController {
   }
 
   void SignUserUp() async {
-    var payLoad = {};
-    var res = await client
-        .post(
-          baseApi,
-          '/api/v1/auth/signup',
-          payLoad,
-        )
+    final isValid = signupformkey.currentState!.validate();
+    if (isValid == false) return;
+    signupformkey.currentState!.save();
+    var payLoad = {
+      'name': name,
+      "email": email,
+      "password": password,
+    };
+    SignUpRepo signUpRepo = SignUpRepo(payLoad: payLoad);
+    var res = await signUpRepo
+        .signUpUser()
         .catchError(BaseExecptionController.handleError);
+    if (res != null) {
+      var resJson = json.decode(res.body);
+      print(resJson);
+    } else {
+      print('could not load');
+    }
 
     print(res);
   }

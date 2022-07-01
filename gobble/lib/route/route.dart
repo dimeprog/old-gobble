@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:gobble/screens/details_product_screen.dart';
 import 'package:gobble/screens/login_screen.dart';
 import 'package:gobble/screens/splash_screen.dart';
 import 'package:gobble/screens/welcome_page_screen.dart';
@@ -13,6 +14,7 @@ class AppRoute {
   static String welcome = '/welcome-screen';
   static String signup = '/signup-screen';
   static String Home = '/home-screen';
+  static String Details = '/details-product-screen';
 
   //  making address
   static String gotoSplashScreen() => Splash;
@@ -20,6 +22,7 @@ class AppRoute {
   static String gotoWelcomeScreen() => welcome;
   static String gotoSignupScreen() => signup;
   static String gotoHomeScreen() => Home;
+  static String gotoDetailProductScreen() => Details;
 
   // route pages
 
@@ -45,6 +48,10 @@ class AppRoute {
     GetPage(
       name: signup,
       page: () => SignUpScreen(),
+    ),
+    GetPage(
+      name: Details,
+      page: () => DetailProductScreen(),
     ),
   ];
 }

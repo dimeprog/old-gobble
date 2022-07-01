@@ -3,16 +3,16 @@ import 'dart:io';
 import 'dart:math';
 import 'dart:convert';
 
+import 'package:get/get.dart';
+import 'package:gobble/models/product.dart';
 import 'package:gobble/services/api/app_execption.dart';
 import 'package:gobble/services/api/app_execption.dart';
 import 'package:http/http.dart ' as http;
 
 class GobbleBaseClient {
-  final String? baseUrl;
-  GobbleBaseClient({required this.baseUrl});
-  static const TIMEOUT = 20;
+  static const TIMEOUT = 40;
   //  GET
-  Future<String?> get(String baseUrl, String endPoint) async {
+  Future<http.Response> get(String baseUrl, String endPoint) async {
     var uri = Uri.parse(baseUrl + endPoint);
     try {
       var response = await http.get(uri).timeout(
@@ -31,7 +31,8 @@ class GobbleBaseClient {
   }
 
   // POST
-  Future<String?> post(String baseUrl, String endPoint, dynamic payload) async {
+  Future<http.Response> post(
+      String baseUrl, String endPoint, dynamic payload) async {
     var uri = Uri.parse(baseUrl + endPoint);
     var JsonData = json.encode(payload);
     try {
@@ -60,10 +61,11 @@ class GobbleBaseClient {
 
   // DELETE
   // OTHER
-  String? _processResponse(http.Response response) {
+  http.Response _processResponse(http.Response response) {
     switch (response.statusCode) {
       case 200:
-        var resJson = utf8.decode(response.bodyBytes);
+        var resJson = response;
+        print(resJson);
         return resJson;
       case 400:
         throw BadRequestExecption(

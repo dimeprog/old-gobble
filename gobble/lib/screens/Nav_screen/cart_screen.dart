@@ -17,27 +17,35 @@ class CartSceen extends StatelessWidget {
           height: screenHeight,
           width: screenWidth,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              NavBar(
-                middleText: 'My Cart',
-                isTrailing: false,
+              Container(
+                margin: EdgeInsets.only(top: getHeight(10)),
+                child: Center(
+                  child: SmallText(
+                    text: 'Cart',
+                    color: colorScheme.surface,
+                    fontSize: 30,
+                    weight: FontWeight.w500,
+                  ),
+                ),
               ),
               SizedBox(
-                height: getHeight(23),
+                height: getHeight(5),
               ),
               SizedBox(
-                height: getHeight(368),
+                height: getHeight(420),
                 child: CartListContainer(),
               ),
               SizedBox(
-                height: getHeight(15),
+                height: getHeight(10),
               ),
               Expanded(
                 child: Column(
                   children: [
                     Container(
                       height: getHeight(121),
-                      width: getWidth(325),
+                      width: getWidth(350),
                       decoration: BoxDecoration(
                         color: colorScheme.onBackground,
                         borderRadius: BorderRadius.circular(
@@ -107,25 +115,27 @@ class CartSceen extends StatelessWidget {
                     SizedBox(
                       height: getHeight(8),
                     ),
-                    Container(
-                      margin: EdgeInsets.symmetric(
-                        horizontal: getWidth(25),
-                      ),
-                      height: getHeight(52),
-                      width: double.infinity,
-                      child: RaisedButton(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(
-                            getHeight(15),
-                          ),
+                    Expanded(
+                      child: Container(
+                        margin: EdgeInsets.symmetric(
+                          horizontal: getWidth(25),
                         ),
-                        onPressed: () {},
-                        color: colorScheme.primary,
-                        child: SmallText(
-                          text: 'Checkout',
-                          fontSize: 20,
-                          color: colorScheme.onSurface,
-                          weight: FontWeight.w500,
+                        height: getHeight(52),
+                        width: double.infinity,
+                        child: RaisedButton(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(
+                              getHeight(15),
+                            ),
+                          ),
+                          onPressed: () {},
+                          color: colorScheme.primary,
+                          child: SmallText(
+                            text: 'Checkout',
+                            fontSize: 20,
+                            color: colorScheme.onSurface,
+                            weight: FontWeight.w500,
+                          ),
                         ),
                       ),
                     )

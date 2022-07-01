@@ -68,7 +68,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             Controller.email = value;
                           },
                           validator: (value) {
-                            return Controller.validateEmail(value!);
+                            return Controller.validateName(value!);
                           },
                           style: TextStyle(
                             color: Colors.black,
@@ -223,10 +223,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     width: getWidth(200),
                     child: AppRaisedButton(
                       onpressed: () {
-                        ApiController().getData;
+                        // ApiController().getData;
                         Controller.SignUserUp();
 
-                        Get.toNamed(AppRoute.gotoHomeScreen());
+                        // Get.toNamed(AppRoute.gotoHomeScreen());
                       },
                       radius: 30,
                       child: Text(

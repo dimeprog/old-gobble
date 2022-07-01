@@ -19,6 +19,9 @@ class BaseExecptionController {
     } else if (err is FetchDataExecption) {
       var msg = err.message;
       DialogHelper.showDialog(content: msg!);
+    } else {
+      var msg = err.toString();
+      DialogHelper.showDialog(content: msg);
     }
   }
 }
