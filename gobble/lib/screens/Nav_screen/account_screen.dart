@@ -18,9 +18,16 @@ class AccountScreen extends StatelessWidget {
           width: screenWidth,
           child: Column(
             children: [
-              NavBar(
-                middleText: 'Account',
-                isTrailing: false,
+              Container(
+                margin: EdgeInsets.only(top: getHeight(10)),
+                child: Center(
+                  child: SmallText(
+                    text: 'Account',
+                    color: colorScheme.surface,
+                    fontSize: 30,
+                    weight: FontWeight.w500,
+                  ),
+                ),
               ),
               SizedBox(
                 height: getHeight(28),
@@ -35,7 +42,7 @@ class AccountScreen extends StatelessWidget {
                     Container(
                       height: getHeight(93),
                       decoration: BoxDecoration(
-                        color: colorScheme.onBackground,
+                        color: colorScheme.onBackground.withOpacity(0.8),
                         borderRadius: BorderRadius.circular(
                           getHeight(15),
                         ),
@@ -43,7 +50,8 @@ class AccountScreen extends StatelessWidget {
                       child: Center(
                         child: ListTile(
                           leading: CircleAvatar(
-                            backgroundColor: Colors.transparent,
+                            backgroundColor:
+                                colorScheme.background.withOpacity(0.8),
                             radius: getWidth(30),
                             child: Image.asset(
                               'assets/images/suya.png',
@@ -52,13 +60,13 @@ class AccountScreen extends StatelessWidget {
                           ),
                           title: SmallText(
                             text: 'Kawsar Ahmed',
-                            color: colorScheme.surface,
+                            color: colorScheme.surface.withOpacity(0.8),
                             weight: FontWeight.w500,
                             fontSize: 18,
                           ),
                           subtitle: SmallText(
                             text: 'uiuxkawsar',
-                            color: Color(0xFFEAEAEA),
+                            color: Colors.white.withOpacity(0.9),
                             fontSize: 14,
                             weight: FontWeight.w400,
                           ),
@@ -94,7 +102,10 @@ class AccountScreen extends StatelessWidget {
                         height: getHeight(53),
                         width: getWidth(325),
                         decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.onBackground,
+                          color: Theme.of(context)
+                              .colorScheme
+                              .onBackground
+                              .withOpacity(0.8),
                           borderRadius: BorderRadius.circular(
                             getHeight(15),
                           ),
@@ -116,9 +127,12 @@ class AccountScreen extends StatelessWidget {
                             ),
                             SmallText(
                               text: 'Notification',
-                              color: Color(0xFFEAEAEA),
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .surface
+                                  .withOpacity(0.8),
                               fontSize: 16,
-                              weight: FontWeight.w400,
+                              weight: FontWeight.w500,
                             ),
                             Expanded(child: Container()),
                             IconButton(

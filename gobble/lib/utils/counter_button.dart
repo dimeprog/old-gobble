@@ -20,37 +20,35 @@ class _CounterButtonState extends State<CounterButton> {
     return Container(
       height: getHeight(20),
       // width: getWidth(53),
-      child: Obx(
-        (() => Row(
-              mainAxisSize: MainAxisSize.min,
-              // mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                IconButton(
-                  color: Colors.white,
-                  onPressed: controller.decreament,
-                  icon: Icon(
-                    Icons.remove_circle_outline_rounded,
-                    color: ColorScheme.surface,
-                    size: getWidth(25),
-                  ),
-                ),
-                SmallText(
-                  text: '${controller.count.value}',
-                  fontSize: 12,
-                  weight: FontWeight.w400,
-                  color: ColorScheme.surface,
-                ),
-                IconButton(
-                  color: Colors.white,
-                  onPressed: controller.increament,
-                  icon: Icon(
-                    Icons.add_circle_outline_rounded,
-                    color: ColorScheme.primary,
-                    size: getWidth(25),
-                  ),
-                )
-              ],
-            )),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        // mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          IconButton(
+            color: Colors.white,
+            onPressed: controller.decreament,
+            icon: Icon(
+              Icons.remove_circle_outline_rounded,
+              color: ColorScheme.surface,
+              size: getWidth(25),
+            ),
+          ),
+          SmallText(
+            text: '${controller.count.value}',
+            fontSize: 12,
+            weight: FontWeight.w400,
+            color: ColorScheme.surface,
+          ),
+          IconButton(
+            color: Colors.white,
+            onPressed: controller.increament,
+            icon: Icon(
+              Icons.add_circle_outline_rounded,
+              color: ColorScheme.primary,
+              size: getWidth(25),
+            ),
+          )
+        ],
       ),
     );
   }

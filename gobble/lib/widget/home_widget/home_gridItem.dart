@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:gobble/models/product.dart';
 import 'package:gobble/utils/dimesnsion.dart';
 import 'package:gobble/utils/text_widget.dart';
 
+import '../../route/route.dart';
+
 class HomeGridItem extends StatelessWidget {
-  ProductItem productItem;
+  Product productItem;
   HomeGridItem({Key? key, required this.productItem});
 
   @override
@@ -26,16 +29,20 @@ class HomeGridItem extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Container(
-            height: getHeight(90),
-            width: getWidth(104),
-            child: Image.asset(
-              'assets/images/image_food.png',
-              fit: BoxFit.cover,
+          GestureDetector(
+            onTap: () => Get.toNamed(AppRoute.gotoDetailProductScreen(),
+                arguments: productItem.id),
+            child: Container(
+              height: getHeight(90),
+              width: getWidth(104),
+              child: Image.network(
+                productItem.image,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           SmallText(
-            text: ProductItem().name,
+            text: productItem.name,
             color: ColorScheme.primary,
             fontSize: 20,
             weight: FontWeight.w500,
@@ -44,7 +51,7 @@ class HomeGridItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               SmallText(
-                text: '\$300',
+                text: '\$${productItem.price}',
                 color: ColorScheme.surface,
                 fontSize: getHeight(20),
               ),

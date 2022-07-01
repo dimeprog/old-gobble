@@ -15,17 +15,17 @@ class CartListTile extends StatelessWidget {
         borderRadius: BorderRadius.circular(
           getWidth(15),
         ),
-        color: ColorScheme.onBackground,
+        color: ColorScheme.onBackground.withOpacity(0.6),
       ),
-      height: getHeight(72),
+      height: getHeight(120),
       // width: getWidth(325),
       margin: EdgeInsets.symmetric(
-          horizontal: getWidth(25), vertical: getHeight(15)),
+          horizontal: getWidth(25), vertical: getHeight(8)),
       child: Center(
         child: ListTile(
           leading: SizedBox(
             width: getWidth(72),
-            height: getHeight(49),
+            height: getHeight(72),
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: getHeight(3)),
               child: FittedBox(
@@ -38,7 +38,7 @@ class CartListTile extends StatelessWidget {
           ),
           title: SmallText(
             text: 'Puchka',
-            color: ColorScheme.surface,
+            color: ColorScheme.surface.withOpacity(0.8),
             weight: FontWeight.w500,
             fontSize: 20,
           ),
@@ -46,7 +46,7 @@ class CartListTile extends StatelessWidget {
             text: 'Chouddagram 3500, Comilla',
             fontSize: 20,
             weight: FontWeight.w400,
-            color: ColorScheme.primary,
+            color: ColorScheme.primary.withOpacity(0.8),
             overflow: TextOverflow.ellipsis,
           ),
           trailing: SmallText(

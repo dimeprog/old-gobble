@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gobble/screens/Nav_screen/cart_screen.dart';
 import 'package:gobble/screens/Nav_screen/home_screen.dart';
-import 'package:gobble/screens/Nav_screen/account.dart';
+import 'package:gobble/screens/Nav_screen/account_screen.dart';
 import 'package:gobble/screens/Nav_screen/order_screen.dart';
 import 'package:gobble/utils/dimesnsion.dart';
 

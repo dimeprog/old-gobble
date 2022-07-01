@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:gobble/utils/dimesnsion.dart';
 import 'package:gobble/utils/text_widget.dart';
 
 class NavBar extends StatelessWidget {
-  NavBar({required this.middleText, required this.isTrailing});
+  NavBar({
+    required this.middleText,
+    required this.isTrailing,
+    this.textColor = const Color(0xff263238),
+  });
   final String middleText;
 
-  final isTrailing;
+  final Color textColor;
+
+  final bool isTrailing;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,7 +28,7 @@ class NavBar extends StatelessWidget {
             radius: getWidth(22.875),
             backgroundColor: Theme.of(context).colorScheme.background,
             child: IconButton(
-              onPressed: () {},
+              onPressed: () => Get.back,
               icon: Icon(
                 Icons.arrow_back,
                 color: Theme.of(context).colorScheme.surface,
@@ -30,18 +37,19 @@ class NavBar extends StatelessWidget {
           ),
           SmallText(
             text: middleText,
-            color: Theme.of(context).colorScheme.surface,
+            color: textColor,
             fontSize: 24,
             weight: FontWeight.w500,
           ),
           isTrailing
               ? CircleAvatar(
+                  backgroundColor: Colors.white,
                   radius: getWidth(22.875),
                   child: IconButton(
                     onPressed: () {},
                     icon: Icon(
                       Icons.favorite,
-                      color: Theme.of(context).colorScheme.background,
+                      color: Theme.of(context).colorScheme.primary,
                     ),
                   ),
                 )
